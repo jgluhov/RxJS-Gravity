@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "target": "es3",
+        "module": "None",
+        "outDir": "public",
+        "strict": true,
+        "outFile": "public/bundle.js",
+        "sourceMap": true,
+        "pretty": true,
+        "watch": true
+    },
+    "include": [
+        "src/main.ts"
+    ]
+}

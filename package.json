@@ -1,0 +1,22 @@
+{
+  "name": "rxjs-gravity",
+  "version": "0.0.1",
+  "description": "Gravity implementation with RxJS library",
+  "main": "index.js",
+  "scripts": {
+    "compile": "tsc",
+    "start": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jgluhov/RxJS-Gravity.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jgluhov/RxJS-Gravity/issues"
+  },
+  "homepage": "https://github.com/jgluhov/RxJS-Gravity#readme",
+  "dependencies": {}
+}
