@@ -7,4 +7,12 @@ namespace Utils {
             callback();
         });
     }
+
+    export function randomIntFromRange(min: number, max: number) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    export function randomColor(colours: string[]) {
+        return colours[Math.floor(Math.random() * colours.length)];
+    }
 }

@@ -4,7 +4,8 @@
   "description": "Gravity implementation with RxJS library",
   "main": "index.js",
   "scripts": {
-    "compile": "tsc",
+    "tsc-bundle": "tsc --p tsconfig.bundle.json",
+    "tsc-worker": "tsc --p tsconfig.worker.json",
     "start": "live-server"
   },
   "repository": {

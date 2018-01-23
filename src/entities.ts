@@ -1,13 +1,14 @@
 namespace Entities {
     export class Ball {
         private ctx: CanvasRenderingContext2D;
-        private gravity: number = 1;
-        private friction: number = 0.99;
+        private vy: number = 0;
+        private vx: number = 0;
+        private gravity: number = 0.2;
+        private friction: number = -0.9;
 
         constructor(
             public x: number, 
             public y: number,
-            public dy: number,
             public radius: number,
             public color: string,
             private canvas: HTMLCanvasElement
@@ -16,18 +17,22 @@ namespace Entities {
         }
 
         update() {
-            if (this.collideBottomEdge()) {
-                this.dy = -this.dy * this.friction;
-            } else {
-                this.dy += this.gravity;
+            this.vy += this.gravity;
+            this.y += this.vy;
+
+            if (this.y + this.radius > this.canvas.height) {
+                this.y = this.canvas.height - this.radius;
+                this.vy *= this.friction;
+            } else if (this.y - this.radius < 0) {
+                this.y = this.radius;
+                this.vy *= this.friction;
             }
 
-            this.y += this.dy;
             this.draw();
         }
 
         collideBottomEdge() {
-            return this.y + this.dy > this.canvas.height - this.radius;
+            return this.y > this.canvas.height - this.radius;
         }
 
 
@@ -35,7 +40,8 @@ namespace Entities {
             this.ctx.beginPath();
             this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
             this.ctx.fillStyle = this.color;
-            this.ctx.fill();
+            this.ctx.fill();     
+            this.ctx.stroke();       
             this.ctx.closePath();
         }
     }

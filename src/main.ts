@@ -7,23 +7,47 @@ const context = canvas.getContext('2d')!;
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
-Utils.handleResize(canvas, init);
+// move to web worker
+// Settings
+const MAX_BALLS: number = 500;
+const MIN_RADIUS: number = 15;
+const MAX_RADIUS: number = 50;
 
-let ball: Entities.Ball;
+const colours = [
+    '#2185C5',
+    '#7ECEFD',
+    '#FFF6E5',
+    "#FF7F66"
+];
+
+let balls: Entities.Ball[];
 
 function init() {
-    ball = new Entities.Ball(
-        canvas.width / 2, canvas.height / 2, 2, 50, 'red', canvas
-    );
+    balls = [];
+
+    for (let i = 0; i < MAX_BALLS; i++) {
+        const radius: number = Utils.randomIntFromRange(MIN_RADIUS, MAX_RADIUS);
+        
+        balls.push(new Entities.Ball(
+            Utils.randomIntFromRange(radius, canvas.width - radius),
+            Utils.randomIntFromRange(radius, canvas.height - radius), 
+            radius, 
+            Utils.randomColor(colours), 
+            canvas
+        ));
+    }
 }
 
+// move to web worker
 function animate() {
     requestAnimationFrame(animate);
 
     context.clearRect(0, 0, canvas.width, canvas.height);
     
-    ball.update();
+    balls.forEach(ball => ball.update());
 }
+
+Utils.handleResize(canvas, init);
 
 init();
 animate();
